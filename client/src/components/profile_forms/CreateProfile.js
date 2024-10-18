@@ -40,13 +40,12 @@ const CreateProfile = ({ createProfile }) => {
 
     const onChange = e => setFormData({ ...formData, [e.target.name]: e.target.value });
 
-    const onSubmit = async (e) => {
+    const onSubmit = async e => {
         e.preventDefault();
         try {
-            await createProfile(formData); // Call the action
-            navigate('/dashboard'); // Redirect after submission
+            await createProfile(formData, navigate); // Call the action and navigate
         } catch (error) {
-            console.error('Profile creation failed:', error); // Log any errors
+            console.error('Error creating profile:', error); // Log any errors
         }
     };
 
