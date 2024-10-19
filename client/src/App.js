@@ -9,6 +9,7 @@ import { loadUser } from './actions/auth';
 import setAuthToken from './utils/setAuthToken';
 import Dashboard from './components/dashboard/Dashboard';
 import CreateProfile from './components/profile_forms/CreateProfile';
+import EditProfile from './components/profile_forms/EditProfile';
 import PrivateRoute from './components/routing/PrivateRoute';
 import './App.css';
 
@@ -40,6 +41,7 @@ const App = () => {
             <Route path="/login" element={<Login />} />
             <Route path="/dashboard" element={<PrivateRoute element={<Dashboard />} />} />
             <Route path="/create-profile" element={<PrivateRoute element={<CreateProfile />} />} />
+            <Route path="/edit-profile" element={<PrivateRoute element={<EditProfile />} />} />
             </Routes>
         </section>
       </Fragment>
