@@ -7,6 +7,7 @@ const { check, validationResult } = require('express-validator');
 
 const Profile = require('../../models/Profile');
 const User = require('../../models/User');
+const Post = require('../../models/Post');
 
 // @route        GET api/profile/me
 // @desc         Get current user's profile
@@ -147,7 +148,9 @@ router.get('/user/:user_id', async(req, res)=>{
 
 router.delete('/',auth,  async(req, res)=>{
     try{
-        //todo ~ remove users posts
+
+        //Remove user posts
+        await Post.deleteMany({user: req.user.id})
 
         //Remove profile
         await Profile.findOneAndDelete({user: req.user.id})
@@ -226,20 +229,20 @@ router.put(
     }
 )
 
-// @route        DELETE api/profile/education/:exp_id
-// @desc         Delete education from profile
+// @route        DELETE api/profile/experience/:exp_id
+// @desc         Delete experience from profile
 // @access       Private
 
-router.delete('/education/:exp_id', auth, async(req,res)=>{
+router.delete('/experience/:exp_id', auth, async(req,res)=>{
     try{
         const profile = await Profile.findOne({user: req.user.id});
 
         //Get the remove index
 
-        const removeIndex = profile.education.map(item=> item.id).indexOf
+        const removeIndex = profile.experience.map(item=> item.id).indexOf
         (req.params.exp_id);
 
-        profile.education.splice(removeIndex, 1);
+        profile.experience.splice(removeIndex, 1);
         await profile.save();
         res.json(profile);
     }catch(err){
