@@ -10,6 +10,8 @@ import setAuthToken from './utils/setAuthToken';
 import Dashboard from './components/dashboard/Dashboard';
 import CreateProfile from './components/profile_forms/CreateProfile';
 import EditProfile from './components/profile_forms/EditProfile';
+import AddExperience from './components/profile_forms/AddExperience';
+import AddEducation from './components/profile_forms/AddEducation';
 import PrivateRoute from './components/routing/PrivateRoute';
 import './App.css';
 
@@ -42,6 +44,9 @@ const App = () => {
             <Route path="/dashboard" element={<PrivateRoute element={<Dashboard />} />} />
             <Route path="/create-profile" element={<PrivateRoute element={<CreateProfile />} />} />
             <Route path="/edit-profile" element={<PrivateRoute element={<EditProfile />} />} />
+            <Route path="/add-experience" element={<PrivateRoute element={<AddExperience />} />} />
+            <Route path="/add-education" element={<PrivateRoute element={<AddEducation />} />} />
+
             </Routes>
         </section>
       </Fragment>
