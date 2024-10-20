@@ -4,10 +4,12 @@ import { connect } from 'react-redux';
 import Spinner from '../layout/Spinner';
 import { getProfileById } from '../../actions/profile';
 import { Link, useParams } from 'react-router-dom';
+import ProfileTop from './ProfileTop';
+import ProfileAbout from './ProfileAbout';
 
 const Profile = ({
   getProfileById,
-  profile: { profile, loading },
+  profile: { profile, loading },    
   auth,
 }) => {
   const { id } = useParams(); // Access the user ID from the URL
@@ -32,6 +34,11 @@ const Profile = ({
                 Edit Profile
               </Link>
             )}
+           <div class="profile-grid my-1">
+            <ProfileTop profile={profile} />
+            <ProfileAbout profile={profile} />
+            
+            </div> 
         </Fragment>
       )}
     </Fragment>
@@ -50,3 +57,4 @@ const mapStateToProps = (state) => ({
 });
 
 export default connect(mapStateToProps, { getProfileById })(Profile);
+ 
