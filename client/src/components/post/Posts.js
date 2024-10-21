@@ -2,6 +2,7 @@ import React, { Fragment, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Spinner from '../layout/Spinner';
+import PostItem from './PostItem';
 import { getPosts } from '../../actions/post';
 
 const Posts = ({ getPosts, post: { posts, loading } }) => {
@@ -10,27 +11,22 @@ const Posts = ({ getPosts, post: { posts, loading } }) => {
     }, [getPosts]);
 
     // Display a loading spinner while fetching posts
-    if (loading) {
-        return <Spinner />;
+    return loading ? <Spinner />:  <Fragment>
+            <h1 className="large text-primary">Posts</h1>
+            <p className="lead">
+                <i className="fas fa-user"></i> Welcome to the community!
+            </p>
+            {/*PostForm*/}
+            <div className="posts">
+                {posts.map((post) => (
+                    <PostItem key={post._id} post={post} />
+                ))}
+            </div>
+        </Fragment>
+    
     }
 
-    // Check if there are any posts to display
-    if (!posts || posts.length === 0) {
-        return <div>No posts available.</div>;
-    }
 
-    return (
-        <div>
-            {posts.map((post) => (
-                <div key={post._id} className="post">
-                    <h3>{post.title}</h3>
-                    <p>{post.body}</p>
-                    {/* Add any additional post details you want to display */}
-                </div>
-            ))}
-        </div>
-    );
-};
 
 Posts.propTypes = {
     getPosts: PropTypes.func.isRequired,
