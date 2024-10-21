@@ -11,6 +11,7 @@ const profileEducation = ({education : {
     from,
     description
 }}) => {
+  return(
   
     <div>
       <h3 className='text-dark'>{school}</h3>
@@ -27,8 +28,9 @@ const profileEducation = ({education : {
         <strong>Description: </strong> {description}
       </p>
     </div>
+
   
-}
+)}
 
 profileEducation.propTypes = {
     education: PropTypes.object.isRequired,

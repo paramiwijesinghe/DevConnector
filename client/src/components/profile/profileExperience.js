@@ -11,7 +11,7 @@ const profileExperience = ({experience : {
     from,
     description
 }}) => {
-  
+  return (
     <div>
       <h3 className='text-dark'>{company}</h3>
       <p>
@@ -25,7 +25,7 @@ const profileExperience = ({experience : {
       </p>
     </div>
   
-}
+)}
 
 profileExperience.propTypes = {
     experience: PropTypes.object.isRequired,
