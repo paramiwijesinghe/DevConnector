@@ -95,7 +95,7 @@ router.get('/:id', auth, async(req, res) => {
 
 router.delete('/', auth, async(req, res) => {
     try{
-        const posts = await Post.findById(req.params.id);
+        const post = await Post.findById(req.params.id);
 
         if(!post){
             return res.status(404).json({msg:'Post not found'});
@@ -111,7 +111,7 @@ router.delete('/', auth, async(req, res) => {
 
 
 
-        res.json(posts);
+        res.json(post);
 
     }catch(err){
         console.error(err.message);
